@@ -36,8 +36,11 @@ services:
       - static:/frontend_static
   
   gateway:
-    build: ./gateway/
-    volumes:
-      - static:/staticfiles
-    ports:
-      - 9009:80
+  build: ./nginx/
+  ports:
+    - 9009:443
+    - 80:80
+  volumes:
+    - static:/static
+    - media:/media
+    - /etc/letsencrypt:/etc/letsencrypt:ro
